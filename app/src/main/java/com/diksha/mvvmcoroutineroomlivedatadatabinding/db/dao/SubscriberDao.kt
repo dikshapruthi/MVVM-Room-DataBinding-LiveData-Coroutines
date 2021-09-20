@@ -1,22 +1,25 @@
 package com.diksha.mvvmcoroutineroomlivedatadatabinding.db.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.diksha.mvvmcoroutineroomlivedatadatabinding.db.entity.Subscriber
 
 @Dao
 interface SubscriberDao {
 
     @Insert
-    fun insertSubscriber(subscriber: Subscriber): Long
+    fun insertSubscriber(subscriber: Subscriber)
 
-    @Insert
-    fun insertSubscriber(subscriber1: Subscriber, subscriber2: Subscriber): Long
+    @Update
+    fun updateSubscriber(subscriber: Subscriber)
 
-    @Insert
-    fun insertSubscriber(subscriber: List<Subscriber>): List<Long>
+    @Delete
+    fun deleteSubscriber(subscriber: Subscriber)
 
-    @Insert
-    fun insertSubscriber(subscriber1: Subscriber, subscriber2: List<Subscriber>): List<Long>
+    @Query("DELETE FROM subscriber_table")
+    fun deleteApp()
+
+    @Query("SELECT * FROM subscriber_table")
+    fun getAllSubscriber(): LiveData<List<Subscriber>>
 
 }
